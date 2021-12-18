@@ -41,8 +41,8 @@ def code_verify():
 def login_get_cookies():
     web = Chrome(options=options)
     web.get('https://hw.cnht.com.cn/')
-    web.find_element(By.XPATH,'//*[@id="account_content"]').send_keys('67004228')
-    web.find_element(By.XPATH,'//*[@id="password"]').send_keys('530220')
+    web.find_element(By.XPATH,'//*[@id="account_content"]').send_keys('输入你的证券账号')
+    web.find_element(By.XPATH,'//*[@id="password"]').send_keys('输入你的密码')
     png = web.find_element(By.XPATH,'//*[@id="kaptchaImage"]').screenshot_as_png
     with open('cnht.jpg','wb')as f:
         f.write(png)
@@ -67,7 +67,7 @@ def buy(buy_url,stock_url):
         'entrust_amount':'100',
         'entrust_prop':'0',
         'entrust_bs':'1',
-        'stock_account':'A440588011',
+        'stock_account':'输入你的对应股票市场的股东账号',
         'exchange_type':'1',
     }
     headers = {
@@ -77,7 +77,7 @@ def buy(buy_url,stock_url):
         'cache-control':'no-cache',
         'content-length':'123',
         'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
-        'cookie':'fund_account=67004228; JSESSIONID='+str(login_get_cookies()),
+        'cookie':'fund_account=securities_account_number; JSESSIONID='+str(login_get_cookies()),
         'origin':'https://hw.cnht.com.cn',
         'pragma':'no-cache',
         'referer':'https://hw.cnht.com.cn/trade/buy.html',
@@ -102,7 +102,7 @@ def sell_yhrl(sell_url,stock_url):
         'cache-control': 'no-cache',
         'content-length': '127',
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'cookie': 'fund_account=67004228; JSESSIONID='+str(login_get_cookies()),
+        'cookie': 'fund_account=securities_account_number; JSESSIONID='+str(login_get_cookies()),
         'origin': 'https://hw.cnht.com.cn',
         'pragma': 'no-cache',
         'referer': 'https://hw.cnht.com.cn/trade/sell.html',
@@ -121,7 +121,7 @@ def sell_yhrl(sell_url,stock_url):
         'entrust_amount': '100',
         'entrust_prop': '0',
         'entrust_bs': '2',
-        'stock_account': 'A440588011',
+        'stock_account': '输入你的对应股票市场的股东账号',
         'exchange_type': '1',
     }
     resp = requests.post(sell_url,headers=headers,data=data)
@@ -129,7 +129,7 @@ def sell_yhrl(sell_url,stock_url):
 
 # 定义卖出函数
 def sell_nhg(nhg_sell_url,nhg_url):
-    cookie = 'fund_account=67004228; JSESSIONID='+str(login_get_cookies())
+    cookie = 'fund_account=securities_account_number; JSESSIONID='+str(login_get_cookies())
     headers = {
         'accept': 'application/json, text/javascript, */*; q=0.01',
         'accept-encoding': 'gzip, deflate, br',
@@ -156,7 +156,7 @@ def sell_nhg(nhg_sell_url,nhg_url):
         'entrust_amount': '100',
         'entrust_prop': '0',
         'entrust_bs': '2',
-        'stock_account': '0327980298',
+        'stock_account': '输入你的对应股票市场的股东账号',
         'exchange_type': '2',
     }
     resp = requests.post(nhg_sell_url,data=data,headers=headers)
