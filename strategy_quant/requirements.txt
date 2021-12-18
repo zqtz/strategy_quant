@@ -1,2 +1,4 @@
 requests
 一个证券账号
+selenium
+一个百度的识别验证码的api
